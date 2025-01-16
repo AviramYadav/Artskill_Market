@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artistry Market</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(135deg, #695c70, #2e0b4a);
+    }
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+    header .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .navbar .logo {
+        color: #fff;
+        font-weight: 600;
+        font-size: 2.1rem;
+        text-decoration: none;
+    }
+    .navbar .logo span {
+        color: #C06B3E;
+    }
+    .navbar .menu-links {
+        display: flex;
+        list-style: none;
+        gap: 35px;
+    }
+    .navbar a {
+        color: #fff;
+        text-decoration: none;
+        transition: 0.2s ease;
+    }
+    .navbar a:hover {
+        color: #C06B3E;
+    }
+    .hero-section {
+        height: 100vh;
+        background-image: url(367559948114.jpg);
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+    }
+    .hero-section .content {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        color: #fff;
+    }
+    .hero-section .content h2 {
+        font-size: 3rem;
+        max-width: 600px;
+        line-height: 70px;
+    }
+    .hero-section .content p {
+        font-weight: 300;
+        max-width: 600px;
+        margin-top: 15px;
+    }
+    .hero-section .content button {
+        background: #fff;
+        padding: 12px 30px;
+        border: none;
+        font-size: 1rem;
+        border-radius: 6px;
+        margin-top: 38px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: 0.2s ease;
+    }
+    .hero-section .content button:hover {
+        color: #fff;
+        background: #C06B3E;
+    }
+    #close-menu-btn {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        cursor: pointer;
+        display: none;
+    }
+    .login-form-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+    .login-form {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    .login-form label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .login-form input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    .login-form button {
+        width: 100%;
+        padding: 10px;
+        background: #C06B3E;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .login-form button:hover {
+        background: #9a532e;
+    }
+    @media (max-width: 768px) {
+        header {
+            padding: 10px;
+        }
+        header.show-mobile-menu::before {
+            content: "";
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(5px);
+        }
+        .navbar .logo {
+            font-size: 1.7rem;
+        }
+        #hamburger-btn, #close-menu-btn {
+            display: block;
+        }
+        .navbar .menu-links {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100vh;
+            background: #fff;
+            flex-direction: column;
+            padding: 70px 40px 0;
+            transition: left 0.2s ease;
+        }
+        header.show-mobile-menu .navbar .menu-links {
+            left: 0;
+        }
+        .navbar a {
+            color: #000;
+        }
+        .hero-section .content {
+            text-align: center;
+        }
+        .hero-section .content :is(h2, p) {
+            max-width: 100%;
+        }
+        .hero-section .content h2 {
+            font-size: 2.3rem;
+            line-height: 60px;
+        }
+        .hero-section .content button {
+            padding: 9px 18px;
+        }
+        .login-form-container {
+            padding: 20px;
+        }
+        .login-form {
+            width: 90%;
+            max-width: 400px;
+        }
+    }
+    /* Additional styles for the signup form */
+    #signup-form-container {
+        display: none;
+    }
+    #signup-form-container.show-signup-form {
+        display: flex;
+    }
+    #signup-form-container .signup-form {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    /* End of additional styles */
+    @media (max-width: 768px) {
+        /* Adjustments for smaller screens */
+        header .navbar .menu-links {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100vh;
+            background: #fff;
+            flex-direction: column;
+            padding: 70px 40px 0;
+            transition: left 0.2s ease;
+        }
+        header.show-mobile-menu .navbar .menu-links {
+            left: 0;
+        }
+        .hero-section .content {
+            text-align: center;
+        }
+        .hero-section .content :is(h2, p) {
+            max-width: 100%;
+        }
+        .hero-section .content h2 {
+            font-size: 2.3rem;
+            line-height: 60px;
+        }
+        .hero-section .content button {
+            padding: 9px 18px;
+        }
+        .login-form-container {
+            padding: 20px;
+        }
+        .login-form {
+            width: 90%;
+            max-width: 400px;
+        }
+        /* Additional styles for responsiveness */
+        .navbar .menu-links {
+            left: -100%; /* Initial position off-screen */
+            transition: left 0.3s ease; /* Smoother transition */
+        }
+        header.show-mobile-menu .navbar .menu-links {
+            left: 0; /* Slide in when menu is opened */
+        }
+        .navbar a {
+            color: #000;
+        }
+    }
+    /* Products Section */
+    /* Products Carousel */
+    .product-carousel {
+        overflow: hidden;
+        position: relative;
+    }
+    .product-list {
+        display: flex;
+        gap: 20px;
+        transition: transform 0.5s ease; /* Smooth transition for manual navigation */
+    }
+    .product-card {
+        flex: 0 0 300px; /* Set fixed width for each product card */
+        transition: transform 0.5s ease; /* Smooth transition for zoom effect */
+    }
+    .product-card img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.5s ease; /* Smooth transition for zoom effect */
+    }
+    .product-card:focus {
+        transform: scale(1.2); /* Zoom effect on focus */
+        z-index: 1;
+    }
+    .product-card:focus img {
+        transform: scale(1.2); /* Zoom effect on focus */
+    }
+    /* Navigation buttons */
+    .prev-btn,
+    .next-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border: none;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .prev-btn:hover,
+    .next-btn:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+    /* End of new styles */
+    /* Artists Section */
+    .artists-section {
+        padding: 50px 0;
+    }
+    .artists-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+    .artist-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .artist-card {
+        background-color: #f9f9f9;
+        border-radius: 50%;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+    }
+    .artist-card img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .artist-card h3 {
+        margin-top: 20px;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    .artist-card p {
+        margin-top: 10px;
+        color: #666;
+        text-align: center;
+    }
+    /* Footer */
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 50px 0;
+        text-align: center;
+    }
+    .footer-links {
+        margin-top: 20px;
+    }
+    .footer-links a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+    }
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+    .ratings-reviews {
+        padding: 50px 0;
+    }
+    .ratings-reviews h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+    .review-card {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+    }
+    .review-card p {
+        margin-top: 10px;
+        color: #666;
+    }
+</style>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a class="logo" href="#">Artistry<span>.Market</span></a>
+        <ul class="menu-links">
+            <li><a href="MAIN.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="#">Explore</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero-section">
+    <div class="content">
+        <h2>Where art comes alive in the palm of your hands</h2>
+        <p>
+            Art exploration is a journey into the depths of creativity,
+            a voyage where imagination knows no bounds. It's a venture into the unknown,
+            a quest to unravel the mysteries of the human experience through the language of colors,
+            shapes, and textures.
+        </p>
+        <button id="login-btn">Login</button>
+        <button id="signup-btn">SignUp</button>
+    </div>
+</section>
+
+<!-- Login form -->
+<div class="login-form-container" id="login-form-container">
+    <div class="login-form">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" name="login-username" required>
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="login-password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
+
+<!-- Signup form -->
+<div class="login-form-container" id="signup-form-container">
+    <div class="signup-form">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <div>
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first-name" required>
+            </div>
+            <div>
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last-name" required>
+            </div>
+            <div>
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" name="signup-email" required>
+            </div>
+            <div>
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" name="signup-password" required>
+            </div>
+            <div>
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <div>
+                <label for="mobile-number">Mobile Number</label>
+                <input type="text" id="mobile-number" name="mobile-number" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</div>
+
+<!-- Products Section -->
+    <section class="products-section">
+        <div class="content">
+            <h2>Featured Products</h2>
+            <!-- Product carousel -->
+            <div class="product-carousel">
+                <!-- Product cards go here -->
+                <div class="product-list">
+                    <div class="product-card">
+                        <img src="art1.jpg" alt="Product 1">
+                        <h3>Product 1</h3>
+                        <p>Description of Product 1</p>
+                    </div>
+                    <!-- Add more product cards as needed -->
+                </div>
+                <!-- Navigation buttons -->
+                <button class="prev-btn">&lt;</button>
+                <button class="next-btn">&gt;</button>
+            </div>
+        </div>
+    </section>
+
+<!-- Artists Section -->
+<section class="artists-section">
+    <div class="content">
+        <h2>Featured Artists</h2>
+        <!-- Artist cards go here -->
+        <div class="artist-list">
+            <div class="artist-card">
+                <img src="artist1.jpeg" alt="Artist 1">
+                <h3>Artist 1</h3>
+                <p><b>Soniya</b></p>
+                <p>Pune, Maharashtra</p>
+            </div>
+            <div class="artist-card">
+                <img src="artist2.jpeg" alt="Artist 2">
+                <h3>Artist 2</h3>
+                <p><b>Harry</b></p>
+                <p>Lucknow, Uttar Pradesh</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ratings and Reviews Section -->
+<section class="ratings-reviews">
+    <div class="content">
+        <h2>Customer Ratings and Reviews</h2>
+        <!-- Review cards go here -->
+        <div class="review-card">
+            <p>User's review and rating</p>
+        </div>
+        <div class="review-card">
+            <p>User's review and rating</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="content">
+        <p>&copy; 2024 Artistry Market. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">FAQs</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const prevButton = document.querySelector('.prev-btn');
+        const nextButton = document.querySelector('.next-btn');
+        const productCarousel = document.querySelector('.product-carousel');
+        const productList = document.querySelector('.product-list');
+
+        let currentIndex = 0;
+        const totalProducts = document.querySelectorAll('.product-card').length;
+        const productWidth = document.querySelector('.product-card').offsetWidth + 20; // Include margin
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalProducts) % totalProducts;
+            updateCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalProducts;
+            updateCarousel();
+        });
+
+        function updateCarousel() {
+            const newPosition = -currentIndex * productWidth;
+            productList.style.transform = `translateX(${newPosition}px)`;
+        }
+
+        // Initial focus on first product card
+        document.querySelector('.product-card').focus();
+    });
+</script>
+</body>
+</html>
+
+
+
+
+

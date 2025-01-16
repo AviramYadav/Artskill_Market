@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Profile - Artistry Market</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    header {
+        background-color: #1E272E;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .logo {
+        color: #fff;
+        font-size: 24px;
+        text-decoration: none;
+    }
+
+    .menu-links {
+        list-style: none;
+        display: flex;
+    }
+
+    .menu-links li {
+        margin-right: 20px;
+    }
+
+    .menu-links li a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .menu-links li a:hover {
+        color: #C06B3E;
+    }
+
+    .icons i {
+        font-size: 24px;
+        color: #fff;
+        transition: color 0.3s ease;
+    }
+
+    .icons i:hover {
+        color: #C06B3E;
+    }
+
+    .profile-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .profile-details img {
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%;
+}
+    .profile-details {
+        text-align: center;
+    }
+
+    .profile-details h2 {
+        margin-bottom: 20px;
+    }
+
+    .user-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user-details p {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a class="logo" href="#">Artistry<span>.Market</span></a>
+        <ul class="menu-links">
+            <li><a href="avir.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="image slider.html">Explore Artists</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+        
+            <div class="icons">
+                <i class="fas fa-user" id="profile-icon"></i> <!-- Profile icon -->
+                <i class="fas fa-heart" id="wishlist-icon"></i> <!-- Wishlist icon -->
+                <i class="fas fa-shopping-cart" id="cart-icon"></i> <!-- Cart icon -->
+              </div>
+        </div>
+    </nav>
+</header>
+
+<div class="profile-container">
+    <div class="profile-details">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile Picture">
+        <h2>User Profile</h2>
+        <div class="user-details">
+            <p><strong>Name:</strong> John Doe</p>
+            <p><strong>Email:</strong> john@example.com</p>
+            <p><strong>Location:</strong> New York, USA</p>
+            <!-- Add more user details as needed -->
+        </div>
+    </div>
+</div>
+<script>
+    // Add event listener to the profile icon
+    document.getElementById("profile-icon").addEventListener("click", function() {
+      // Redirect to profile.html
+      window.location.href = "profile.html";
+    });
+    
+    // Add event listener to the wishlist icon
+    document.getElementById("wishlist-icon").addEventListener("click", function() {
+      // Redirect to wishlist.html
+      window.location.href = "wishlist.html";
+    });
+    
+    // Add event listener to the cart icon
+    document.getElementById("cart-icon").addEventListener("click", function() {
+      // Redirect to cart.html
+      window.location.href = "cart.html";
+    });
+    </script>
+</body>
+</html>

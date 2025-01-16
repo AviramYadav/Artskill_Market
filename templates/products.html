@@ -1,0 +1,520 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products - Artistry Market</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  /* CSS styles */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  body {
+    background: linear-gradient(135deg, #695c70, #2e0b4a);
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #1E272E;
+    color: #fff;
+  }
+
+  header .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .navbar .logo {
+    color: #fff;
+    font-weight: 600;
+    font-size: 2.1rem;
+    text-decoration: none;
+  }
+
+  .navbar .logo span {
+    color: #C06B3E;
+  }
+
+  .navbar .menu-links {
+    display: flex;
+    list-style: none;
+  }
+
+  .navbar .menu-links li {
+    margin-right: 20px;
+  }
+
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .navbar a:hover {
+    color: #C06B3E;
+  }
+  .navbar .icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar .icons i {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.2s ease;
+}
+
+.navbar .icons i:hover {
+  color: #C06B3E;
+}
+
+  .search-bar {
+    text-align: center;
+    margin-top: 140px;
+  }
+
+  .search-bar input[type="text"] {
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+
+  .search-bar button {
+    padding: 10px 20px;
+    background-color: #C06B3E;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .search-bar button:hover {
+    background-color: #9a532e;
+  }
+
+  .category-section {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .category-section button {
+    padding: 10px 20px;
+    background-color: #C06B3E;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .category-section button:hover {
+    background-color: #9a532e;
+  }
+
+  .products-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .product {
+    width: calc(33.33% - 20px);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .product img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .product-details {
+    padding: 15px;
+  }
+
+  .product-details h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+
+  .product-details p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .product-price {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .add-to-cart {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .wishlist {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .wishlist button {
+    padding: 8px 20px;
+    background-color: #C06B3E;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .wishlist button:hover {
+    background-color: #9a532e;
+  }
+
+  .add-to-cart button {
+    padding: 8px 20px;
+    background-color: #C06B3E;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .add-to-cart button:hover {
+    background-color: #9a532e;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .product {
+      width: calc(50% - 20px);
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <a class="logo" href="#">Artistry<span>.Market</span></a>
+    <ul class="menu-links">
+      <li><a href="avir.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="image slider.html">Explore Artists</a></li>
+      <li><a href="about.html">About us</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+    <div class="icons">
+      <i class="fas fa-user" id="profile-icon"></i> <!-- Profile icon -->
+      <i class="fas fa-heart" id="wishlist-icon"></i> <!-- Wishlist icon -->
+      <i class="fas fa-shopping-cart" id="cart-icon"></i> <!-- Cart icon -->
+    </div>
+  </nav>
+</header>
+
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search products...">
+  <button onclick="searchProducts()">Search</button>
+</div>
+
+<div class="category-section">
+  <button class="category-btn" data-category="all">All</button>
+  <button class="category-btn" data-category="paintings">Paintings</button>
+  <button class="category-btn" data-category="sculptures">Sculptures</button>
+  <button class="category-btn" data-category="wall-hangings">Wall Hangings</button>
+  <button class="category-btn" data-category="digital-art">Digital Art</button>
+  <button class="category-btn" data-category="photography">Photography</button>
+</div>
+
+<div class="products-container">
+  <!-- Sample product cards -->
+
+  <div class="product">
+    <img src="art1.jpg" alt="Modern Sunset">
+    <div class="product-details">
+      <h3>Modern Sunset</h3>
+      <p>Vibrant hues dance across the canvas, capturing the essence of a contemporary sunset.</p>
+      <p class="product-price">$100</p>
+    </div>
+    <div class="wishlist">
+      <button onclick="addToWishlist('Modern Sunset', 100, 'art1.jpg', 'Vibrant hues dance across the canvas, capturing the essence of a contemporary sunset.')">Add to Wishlist</button>
+    </div>
+    <div class="add-to-cart">
+      <button onclick="addToCart('Modern Sunset', 100, 'art1.jpg', 'Vibrant hues dance across the canvas, capturing the essence of a contemporary sunset.')">Add to Cart</button>
+    </div>
+  </div>
+  
+    
+  <div class="product">
+    <img src="wall2.jpg" alt="Serenity Falls">
+    <div class="product-details">
+     <h3>Serenity Falls</h3>
+     <p>Carved from tranquil stone, smooth curves mimic cascading waterfalls. Each contour, meticulously sculpted, captures the fluidity of flowing streams. The polished surface invites contemplation, evoking serenity. A tranquil oasis where nature's rhythms soothe the soul.</p>
+      <p class="product-price">$120</p>
+    </div>
+   <div class="wishlist">
+     <button onclick="addToWishlist('Serenity Falls', 120, 'wall2.jpg', 'Carved from tranquil stone, smooth curves mimic cascading waterfalls. Each contour, meticulously sculpted, captures the fluidity of flowing streams. The polished surface invites contemplation, evoking serenity. A tranquil oasis where nature\'s rhythms soothe the soul.')">Add to Wishlist</button>
+    </div>
+    <div class="add-to-cart">
+      <button onclick="addToCart('Serenity Falls', 120, 'wall2.jpg', 'Carved from tranquil stone, smooth curves mimic cascading waterfalls. Each contour, meticulously sculpted, captures the fluidity of flowing streams. The polished surface invites contemplation, evoking serenity. A tranquil oasis where nature\'s rhythms soothe the soul.')">Add to Cart</button>
+   </div>
+  </div>
+
+
+  <div class="product">
+    <img src="art2.jpg" alt="Art 2">
+    <div class="product-details">
+      <h3>Art Piece 2</h3>
+      <p>Description of art piece 2 goes here.</p>
+      <p class="product-price">$120</p>
+    </div>
+    <div class="wishlist">
+      <button onclick="addToWishlist('Art Piece 2', 120, 'art2.jpg', 'Description of art piece 2 goes here.')">Add to Wishlist</button>
+    </div>
+    <div class="add-to-cart">
+      <button onclick="addToCart('Art Piece 2', 120, 'art2.jpg', 'Description of art piece 2 goes here.')">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Repeat the product cards for other products -->
+</div>
+
+<script>
+  const products = [
+    { name: 'Modern Sunset', price: 100, image: 'art1.jpg', description: 'Vibrant hues dance across the canvas, capturing the essence of a contemporary sunset.', category: 'paintings' },
+    { name: 'Serenity Falls', price: 120, image: 'wall2.jpg', description: 'Carved from tranquil stone, smooth curves mimic cascading waterfalls. Each contour, meticulously sculpted, captures the fluidity of flowing streams. The polished surface invites contemplation, evoking serenity. A tranquil oasis where nature\'s rhythms soothe the soul.', category: 'paintings' },
+    { name: 'Sunset Reverie', price: 95, image: 'p3.jpg', description: 'Layers of warm tones blend seamlessly, inviting viewers into a dreamy sunset reverie.', category: 'paintings' },
+    { name: 'Thinking Man', price: 650, image: 'art2.jpg', description: 'Contemplative bronze figure invites introspection, embodying the essence of deep thought.', category: 'sculptures' },
+    { name: 'The Muse', price: 800, image: 'art8.jpg', description: 'Graceful curves of marble inspire creativity, beckoning the muse within. Each delicate contour whispers tales of artistry, inviting imaginations to soar amidst its timeless elegance.', category: 'sculptures' },
+    { name: 'Dreamscape', price: 150, image: 'art4.jpg', description: 'Digitally crafted dreamscape invites exploration of imaginary worlds, blurring the lines between reality and fantasy.', category: 'wall-hangings' },
+    { name: 'Abstract Elegance', price: 180, image: 'art12.jpg', description: 'Elegant composition of abstract forms evokes a sense of sophistication and refined beauty.', category: 'digital-art' },
+    { name: 'Whimsical Wonder', price: 95, image: 'art10.jpg', description: 'Delicate embroidery dances across the textile, infusing spaces with whimsy and charm.', category: 'wall-hangings' },
+    { name: 'Mystic Forest', price: 85, image: 'art11.jpg', description: 'Enchanting tapestry of ancient trees transports viewers to the heart of a mystical forest.', category: 'digital-art' },
+    { name: 'Her Mold', price: 720, image: 'art9.jpg', description: 'Reflective steel forms mirror the world around, capturing fleeting moments in perpetual reflection.', category: 'sculptures' },
+    { name: 'Greenery', price: 80, image: 'art3.jpg', description: 'Bold geometric patterns woven into fabric evoke awe and wonder, adding flair to any wall.', category: 'wall-hangings' },
+    { name: 'Golden Sunset', price: 90, image: 'art5.jpg', description: 'As the sun dips below the horizon, casting its final golden glow, nature\'s masterpiece unfolds in hues of amber and rose, painting the sky with a symphony of colors that dance and fade into twilight\'s embrace.', category: 'photography' },
+    { name: 'Techno Dreams', price: 130, image: 'art13.jpg', description: 'Futuristic digital creation sparks imagination and curiosity, inviting viewers to ponder the possibilities of tomorrow.', category: 'digital-art' },
+    { name: 'Urban Landscape', price: 110, image: 'art14.webp', description: 'Skyscrapers stand tall against the canvas of the sky, their shimmering facades reflecting the vibrancy of city life. Amidst the hustle and bustle, the cityscape tells stories of ambition, diversity, and endless possibilities.', category: 'photography' },
+    { name: 'Nature\'s Harmony', price: 100, image: 'art15.jpg', description: 'Harmonious blend of earth, sky, and water celebrates the timeless beauty of nature in perfect balance.', category: 'photography' },
+];
+
+// Add event listener to the profile icon
+document.getElementById("profile-icon").addEventListener("click", function() {
+  // Redirect to profile.html
+  window.location.href = "profile.html";
+});
+
+// Add event listener to the wishlist icon
+document.getElementById("wishlist-icon").addEventListener("click", function() {
+  // Redirect to wishlist.html
+  window.location.href = "wishlist.html";
+});
+
+// Add event listener to the cart icon
+document.getElementById("cart-icon").addEventListener("click", function() {
+  // Redirect to cart.html
+  window.location.href = "cart.html";
+});
+  // Function to display products based on selected category
+  function displayProducts(category) {
+    const productsContainer = document.querySelector('.products-container');
+    productsContainer.innerHTML = ''; // Clear previous products
+
+    let filteredProducts = products;
+    if (category !== 'all') {
+      filteredProducts = products.filter(product => product.category === category);
+    }
+
+    filteredProducts.forEach(product => {
+      const productCard = `
+        <div class="product">
+          <img src="${product.image}" alt="${product.name}">
+          <div class="product-details">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <p class="product-price">$${product.price}</p>
+          </div>
+          <div class="wishlist">
+            <button onclick="addToWishlist('${product.name}', ${product.price}, '${product.image}', '${product.description}')">Add to Wishlist</button>
+          </div>
+          <div class="add-to-cart">
+            <button onclick="addToCart()">Add to Cart</button>
+          </div>
+        </div>
+      `;
+      productsContainer.insertAdjacentHTML('beforeend', productCard);
+    });
+  }
+
+  // Function to search products based on input
+  function searchProducts() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const filteredProducts = products.filter(product => {
+      return product.name.toLowerCase().includes(searchInput) || product.description.toLowerCase().includes(searchInput);
+    });
+    displayProducts('all'); // Display all products
+    displayFilteredProducts(filteredProducts); // Display filtered products
+  }
+
+  // Function to display filtered products
+  function displayFilteredProducts(filteredProducts) {
+    const productsContainer = document.querySelector('.products-container');
+    productsContainer.innerHTML = ''; // Clear previous products
+
+    filteredProducts.forEach(product => {
+      const productCard = `
+        <div class="product">
+          <img src="${product.image}" alt="${product.name}">
+          <div class="product-details">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <p class="product-price">$${product.price}</p>
+          </div>
+          <div class="wishlist">
+            <button onclick="addToWishlist('${product.name}', ${product.price}, '${product.image}', '${product.description}')">Add to Wishlist</button>
+          </div>
+          <div class="add-to-cart">
+            <button onclick="addToCart()">Add to Cart</button>
+          </div>
+        </div>
+      `;
+      productsContainer.insertAdjacentHTML('beforeend', productCard);
+    });
+  }
+
+  // Add event listener to category buttons
+  const categoryButtons = document.querySelectorAll('.category-btn');
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.dataset.category;
+      displayProducts(category);
+    });
+  });
+
+  // Initial display of all products
+  displayProducts('all');
+
+
+  
+  // Function to add item to wishlist
+  function addToWishlist(name, price, image, description) {
+    const wishlistItem = { name, price, image, description };
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    wishlist.push(wishlistItem);
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    alert(`Added ${name} to wishlist!`);
+  }
+
+  // Function to add item to cart
+  // function addToCart(name, price, image, description) {
+  //   const cartItem = { name, price, image, description, quantity: 1 };
+  //   let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  //   cart.push(cartItem);
+  //   localStorage.setItem('cart', JSON.stringify(cart));
+  //   alert(`Added ${name} to cart!`);
+  // }
+  function addToCart(name, price, image, description) {
+    // Prompt the user to enter quantity
+    const quantity = prompt(`Enter the quantity for ${name}:`, '1');
+    if (quantity !== null && quantity.trim() !== '') {
+        // Create an object representing the item
+        const item = {
+            name: name,
+            price: price,
+            image: image,
+            description: description,
+            quantity: parseInt(quantity) // Parse quantity as integer
+        };
+
+        // Check if cart exists in local storage
+        let cart = localStorage.getItem('cart');
+        if (cart) {
+            // If cart exists, parse it from JSON string to array
+            cart = JSON.parse(cart);
+        } else {
+            // If cart doesn't exist, initialize an empty array
+            cart = [];
+        }
+
+        // Add the item to the cart
+        cart.push(item);
+
+        // Store the updated cart back to local storage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Alert the user that the item has been added to cart
+        alert(`${name} (Quantity: ${quantity}) has been added to your cart.`);
+    }
+}
+
+//   function addToCart(name, price, image, description) {
+//   // Create an object representing the item
+//   const item = {
+//     name: name,
+//     price: price,
+//     image: image,
+//     description: description
+//   };
+
+//   // Check if cart exists in local storage
+//   let cart = localStorage.getItem('cart');
+//   if (cart) {
+//     // If cart exists, parse it from JSON string to array
+//     cart = JSON.parse(cart);
+//   } else {
+//     // If cart doesn't exist, initialize an empty array
+//     cart = [];
+//   }
+
+//   // Add the item to the cart
+//   cart.push(item);
+
+//   // Store the updated cart back to local storage
+//   localStorage.setItem('cart', JSON.stringify(cart));
+
+//   // Alert the user that the item has been added to cart
+//   alert(name + ' has been added to your cart.');
+// }
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart - Artistry Market</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    header {
+        background-color: #1E272E;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .logo {
+        color: #fff;
+        font-size: 24px;
+        text-decoration: none;
+    }
+
+    .menu-links {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap; /* Allow wrapping of menu items */
+        justify-content: center; /* Center align menu items */
+    }
+
+    .menu-links li {
+        margin-right: 20px;
+    }
+
+    .menu-links li a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .menu-links li a:hover {
+        color: #C06B3E;
+    }
+
+    .icons i {
+        font-size: 24px;
+        color: #fff;
+        transition: color 0.3s ease;
+    }
+
+    .icons i:hover {
+        color: #C06B3E;
+    }
+
+    .cart-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-container h2 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .cart-items {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    .cart-item {
+        display: flex;
+        margin-bottom: 20px;
+        align-items: center;
+    }
+
+    .cart-item img {
+        width: 100px;
+        height: auto;
+        margin-right: 20px;
+    }
+
+    .item-details {
+        flex-grow: 1;
+    }
+
+    .item-details h3 {
+        margin-bottom: 5px;
+    }
+
+    .item-details p {
+        margin-bottom: 10px;
+        color: #666;
+    }
+
+    .item-price {
+        font-weight: bold;
+    }
+
+    .quantity {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .quantity label {
+        margin-right: 10px;
+    }
+
+    .quantity input {
+        width: 50px;
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    .remove-item {
+        padding: 8px 12px;
+        background-color: #C06B3E;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .remove-item:hover {
+        background-color: #9a532e;
+    }
+
+    .cart-total {
+        text-align: right;
+    }
+
+    .cart-total h3 {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .buy-now-button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #C06B3E;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-align: center;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    .buy-now-button:hover {
+        background-color: #9a532e;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .menu-links {
+            flex-direction: column; /* Display menu items in a column */
+            align-items: center; /* Center align menu items */
+        }
+
+        .menu-links li {
+            margin-right: 0;
+            margin-bottom: 10px; /* Add spacing between menu items */
+        }
+    }
+</style>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a class="logo" href="#">Artistry<span>.Market</span></a>
+        <ul class="menu-links">
+            <li><a href="MAIN.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="image slider.html">Explore Artists</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+        <div class="icons">
+            <i class="fas fa-user" id="profile-icon"></i> <!-- Profile icon -->
+            <i class="fas fa-heart" id="wishlist-icon"></i> <!-- Wishlist icon -->
+            <i class="fas fa-shopping-cart" id="cart-icon"></i> <!-- Cart icon -->
+          </div>
+    </nav>
+</header>
+
+<div class="cart-container">
+    <h2>Your Cart</h2>
+    <div class="cart-items" id="cart-items">
+        <!-- Dynamically generated list of cart items -->
+    </div>
+    <div class="cart-total">
+        <h3>Total: <span id="total-price">$0</span></h3> <!-- Dynamically calculate and display total price -->
+    </div>
+    <button class="buy-now-button" onclick="proceedToCheckout()">Buy Now</button>
+</div>
+
+<script>
+    // Add event listener to the profile icon
+document.getElementById("profile-icon").addEventListener("click", function() {
+  // Redirect to profile.html
+  window.location.href = "profile.html";
+});
+
+// Add event listener to the wishlist icon
+document.getElementById("wishlist-icon").addEventListener("click", function() {
+  // Redirect to wishlist.html
+  window.location.href = "wishlist.html";
+});
+
+// Add event listener to the cart icon
+document.getElementById("cart-icon").addEventListener("click", function() {
+  // Redirect to cart.html
+  window.location.href = "cart.html";
+});
+
+function generateCartItems() {
+    const cartContainer = document.getElementById('cart-items');
+    let totalPrice = 0;
+    const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="item-details">
+                <h3>${item.name}</h3>
+                <p>${item.description}</p>
+                <div class="quantity">
+                    <label for="quantity${index}">Quantity:</label>
+                    <input type="number" id="quantity${index}" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)">
+                </div>
+                <p class="item-price">$${item.price}</p>
+            </div>
+            <button class="remove-item" onclick="removeItem(${index})">Remove</button>
+        `;
+        cartContainer.appendChild(cartItem);
+        totalPrice += item.price * item.quantity;
+    });
+
+    document.getElementById('total-price').textContent = `$${totalPrice}`;
+}
+
+    // function generateCartItems() {
+    //     const cartContainer = document.getElementById('cart-items');
+    //     let totalPrice = 0;
+    //     const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+  
+    //     cart.forEach((item, index) => {
+    //         const cartItem = document.createElement('div');
+    //         cartItem.classList.add('cart-item');
+    //         cartItem.innerHTML = `
+    //             <img src="${item.image}" alt="${item.name}">
+    //             <div class="item-details">
+    //                 <h3>${item.name}</h3>
+    //                 <p>${item.description}</p>
+    //                 <div class="quantity">
+    //                     <label for="quantity${index}">Quantity:</label>
+    //                     <input type="number" id="quantity${index}" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
+    //                 </div>
+    //                 <p class="item-price">$${item.price}</p>
+    //             </div>
+    //             <button class="remove-item" onclick="removeItem(${index})">Remove</button>
+    //         `;
+    //         cartContainer.appendChild(cartItem);
+    //         totalPrice += item.price * item.quantity;
+    //     });
+  
+    //     document.getElementById('total-price').textContent = `$${totalPrice}`;
+    // }
+  
+    function updateQuantity(index, quantity) {
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        cart[index].quantity = parseInt(quantity);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        location.reload(); // Reload the page to reflect changes
+    }
+  
+    function removeItem(index) {
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        location.reload(); // Reload the page to reflect changes
+    }
+  
+    function proceedToCheckout() {
+        alert("Redirecting to checkout page...");
+        // Implement actual checkout process
+    }
+  
+    window.onload = generateCartItems;
+</script>
+
+</body>
+</html>
+

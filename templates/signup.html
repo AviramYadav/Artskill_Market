@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>artistrymarket</title>
+<style>
+/* Styles from previous code... */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+}
+
+header .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar .logo {
+  color: #fff;
+  font-weight: 600;
+  font-size: 2.1rem;
+  text-decoration: none;
+}
+
+.navbar .logo span {
+  color: #C06B3E;
+}
+
+.navbar .menu-links {
+  display: flex;
+  list-style: none;
+  gap: 35px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.navbar a:hover {
+  color: #C06B3E;
+}
+
+.hero-section {
+  height: 100vh;
+  background-image: url(367559948114.jpg);
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.hero-section .content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  color: #fff;
+}
+
+.hero-section .content h2 {
+  font-size: 3rem;
+  max-width: 600px;
+  line-height: 70px;
+}
+
+.hero-section .content p {
+  font-weight: 300;
+  max-width: 600px;
+  margin-top: 15px;
+}
+
+.hero-section .content button {
+  background: #fff;
+  padding: 12px 30px;
+  border: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  margin-top: 38px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.hero-section .content button:hover {
+  color: #fff;
+  background: #C06B3E;
+}
+
+#close-menu-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  display: none;
+}
+
+.login-form-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.login-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  background: #C06B3E;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background: #9a532e;
+}
+
+#signup-form-container {
+  display: none;
+}
+
+#signup-form-container.show-signup-form {
+  display: flex;
+}
+
+#signup-form-container .signup-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.signup-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #C06B3E;
+}
+
+/* Hide the close button initially */
+#close-login-btn,
+#close-signup-btn {
+  display: none;
+}
+
+</style>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+      <a class="logo" href="#">Artistry<span>.Market</span></a>
+      <ul class="menu-links">
+        <li><a href="MAIN.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="image slider.html">Explore Artists</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="contact.html">Contact us</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <section class="hero-section">
+    <div class="content">
+      <h2>Where art comes alive in the palm of your hands</h2>
+      <p>
+          Art exploration is a journey into the depths of creativity,
+          a voyage where imagination knows no bounds. It's a venture into the unknown,
+          a quest to unravel the mysteries of the human experience through the language of colors, 
+          shapes, and textures.
+      </p>
+      <button id="auth-btn">Login / Signup</button>
+    </div>
+  </section>
+  
+  <!-- Login form -->
+  <div class="login-form-container" id="login-form-container">
+    <div class="login-form">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label for="login-username">Username</label>
+        <input type="text" id="login-username" name="login-username" required>
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" name="login-password" required>
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <button id="switch-to-signup-btn">Sign Up</button></p>
+      <button id="close-login-btn">Close</button>
+    </div>
+  </div>
+
+<!-- Signup form -->
+<div class="login-form-container" id="signup-form-container">
+  <div class="signup-form">
+    <h2>Create a new account - Signup</h2>
+    <form id="signup-form">
+      <div>
+        <label for="user-name">User Name</label>
+        <input type="text" id="user-name" name="user-name" required>
+      </div>
+      <div>
+        <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" name="signup-email" required>
+      </div>
+      <div>
+        <label for="mobile-number">Mobile Number</label>
+        <input type="text" id="mobile-number" name="mobile-number" required>
+      </div>
+      <div>
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password" name="signup-password" required>
+      </div>
+      <div>
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+      </div>
+
+      <button type="submit">Sign Up</button>
+      <button id="close-signup-btn">Close</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Base URL for Flask server (adjust if running on a different host/port)
+const baseUrl = "http://127.0.0.1:5000"; // Change to your Flask server URL
+
+// Get the login/signup button and form containers
+const authBtn = document.getElementById("auth-btn");
+const loginFormContainer = document.getElementById("login-form-container");
+const signupFormContainer = document.getElementById("signup-form-container");
+const closeLoginBtn = document.getElementById("close-login-btn");
+const closeSignupBtn = document.getElementById("close-signup-btn");
+
+// Show the login form when the button is clicked
+authBtn.addEventListener("click", function() {
+  loginFormContainer.style.display = "flex";
+  closeLoginBtn.style.display = "block";
+  closeSignupBtn.style.display = "block";
+});
+
+// Switch to signup form from login form
+document.getElementById("switch-to-signup-btn").addEventListener("click", function() {
+  loginFormContainer.style.display = "none";
+  signupFormContainer.style.display = "flex";
+  closeLoginBtn.style.display = "block";
+  closeSignupBtn.style.display = "block";
+});
+
+// Hide the form containers when the close buttons are clicked
+document.addEventListener("click", function(event) {
+  if (
+    event.target.id === "close-login-btn" ||
+    event.target.id === "login-form-container"
+  ) {
+    loginFormContainer.style.display = "none";
+    closeLoginBtn.style.display = "none";
+    closeSignupBtn.style.display = "none";
+  } else if (
+    event.target.id === "close-signup-btn" ||
+    event.target.id === "signup-form-container"
+  ) {
+    signupFormContainer.style.display = "none";
+    closeLoginBtn.style.display = "none";
+    closeSignupBtn.style.display = "none";
+  }
+});
+
+// Prevent the forms from closing when clicked inside them
+document.getElementById("login-form").addEventListener("click", function(event) {
+  event.stopPropagation();
+});
+document.getElementById("signup-form").addEventListener("click", function(event) {
+  event.stopPropagation();
+});
+
+// Login form submission with AJAX
+document.getElementById("login-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const email = document.getElementById("login-username").value;
+  const password = document.getElementById("login-password").value;
+
+  if (email === "" || password === "") {
+    alert("Please enter both email and password.");
+    return;
+  }
+
+  fetch(`http://127.0.0.1:5000/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }), // Use email and password for login
+  })
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((data) => {
+          throw new Error(data.error || "Unknown error");
+        });
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.message) {
+        alert(data.message); // Login successful
+        window.location.href = "avir.html"; // Redirect on success
+      }
+    })
+    .catch((error) => {
+      console.error("Login error:", error);
+      alert("An error occurred during login: " + error.message);
+    });
+});
+
+// Signup form submission with AJAX
+document.getElementById("signup-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const userName = document.getElementById("user-name").value;
+  const email = document.getElementById("signup-email").value;
+  const mobileNumber = document.getElementById("mobile-number").value;
+  const password = document.getElementById("signup-password").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
+
+  if (
+    userName === "" ||
+    email === "" ||
+    mobileNumber === "" ||
+    password === "" ||
+    confirmPassword === ""
+  ) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match.");
+    return;
+  }
+// Signup POST request to Flask backend
+fetch("http://127.0.0.1:5000/signup", {  // Correct endpoint with the backend port
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userName, email, mobileNumber, password }),  // Provide the data needed for signup
+})
+
+
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((data) => {
+          throw new Error(data.error || "Unknown error");
+        });
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.message) {
+        alert(data.message); // Signup successful
+        window.location.href = "avir.html"; // Redirect on success
+      }
+    })
+    .catch((error) => {
+      console.error("Signup error:", error);
+      alert("An error occurred during signup: " + error.message);
+    });
+});
+
+</script>
+</body>
+</html>

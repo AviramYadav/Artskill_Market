@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Artistry.Market</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-image: url('cont_back_img_a.png'); /* Background image */
+            background-size: cover;
+            background-position: center;
+        }
+        body {
+    background: linear-gradient(135deg, #695c70, #2e0b4a);
+  }
+
+        /* Navigation Styles */
+        header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #1E272E;
+    color: #fff;
+  }
+
+  header .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .navbar .logo {
+    color: #fff;
+    font-weight: 600;
+    font-size: 2.1rem;
+    text-decoration: none;
+  }
+
+  .navbar .logo span {
+    color: #C06B3E;
+  }
+
+  .navbar .menu-links {
+    display: flex;
+    list-style: none;
+  }
+
+  .navbar .menu-links li {
+    margin-right: 20px;
+  }
+
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .navbar a:hover {
+    color: #C06B3E;
+  }
+
+        /* Contact Page Styles */
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            margin-top: 60px; /* Adjust for the fixed navigation bar */
+        }
+
+        .left-section, .right-section {
+            flex: 1;
+        }
+
+        .left-section {
+            padding-right: 20px;
+            color: #fff;
+        }
+
+        .left-section h2 {
+            font-size: 36px;
+        }
+
+        .right-section {
+            background-color: rgba(255, 255, 255,0.5); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .right-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #C06B3E;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #9a532e;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+      <nav class="navbar">
+        <a class="logo" href="#">Artistry<span>.Market</span></a>
+        <ul class="menu-links">
+          <li><a href="MAIN.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="image slider.html">Explore Artists</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="contact-container">
+        <div class="left-section">
+            <h2>Contact Us</h2>
+            <p>Feel free to reach out to us for any queries, feedback, or assistance.
+                <br/>
+                We value your feedback and strive to provide the best shopping experience.</p>
+            <p>Our website provides a convenient Contact Us option to ensure prompt assistance and support for our customers.</p>
+        </div>
+        <div class="right-section">
+            <h2>Get in Touch</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="query">Query:</label>
+                    <textarea id="query" name="query" rows="4" required></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            // Prevent form submission
+            event.preventDefault();
+            // Get form data
+            let formData = new FormData(this);
+            // Display form data (You can customize this part to send data to server)
+            for (let [name, value] of formData.entries()) {
+                console.log(name + ": " + value);
+            }
+            // Reset form fields
+            this.reset();
+        });
+
+    </script>
+</body>
+</html>
